@@ -30,6 +30,8 @@ struct OdometerView: View {
                 Text(stepsArr[0].description)
                     .font(.largeTitle).bold()
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+
             }
             
             ZStack {
@@ -39,6 +41,8 @@ struct OdometerView: View {
                 Text(stepsArr[1].description)
                     .font(.largeTitle).bold()
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+
             }
             
             ZStack {
@@ -48,6 +52,8 @@ struct OdometerView: View {
                 Text(stepsArr[2].description)
                     .font(.largeTitle).bold()
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+
             }
             
             ZStack {
@@ -57,6 +63,8 @@ struct OdometerView: View {
                 Text(stepsArr[3].description)
                     .font(.largeTitle).bold()
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+
             }
             
             ZStack {
@@ -66,6 +74,8 @@ struct OdometerView: View {
                 Text(stepsArr[4].description)
                     .font(.largeTitle).bold()
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+                
             }
             
             ZStack {
@@ -75,6 +85,8 @@ struct OdometerView: View {
                 Text(stepsArr[5].description)
                     .font(.largeTitle).bold()
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
+
             }
             
 
@@ -82,7 +94,9 @@ struct OdometerView: View {
         .background(.black)
         
         .onChange(of: steps) { _, newSteps in
-            stepsArr = String(newSteps).compactMap { Int(String($0)) }
+            withAnimation {
+                stepsArr = String(newSteps).compactMap { Int(String($0)) }
+            }
         }
     }
 }

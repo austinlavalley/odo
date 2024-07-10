@@ -19,6 +19,10 @@ struct ContentView: View {
                 stepCounter += 1
             }
             
+            Button("Random") {
+                stepCounter = .random(in: 000000...999999)
+            }
+            
             Text(stepCounter.description)
         }
         .padding()
