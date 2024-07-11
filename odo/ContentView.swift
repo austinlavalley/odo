@@ -20,7 +20,7 @@ struct ContentView: View {
             }
             
             Button("Random") {
-                stepCounter = .random(in: 000000...999999)
+                stepCounter = .random(in: 1...10000)
             }
             
             Text(stepCounter.description)
