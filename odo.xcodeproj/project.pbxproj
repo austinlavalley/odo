@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960DC702C4053DA00722727 /* HealthKitManager.swift */; };
 		D9EEADBA2C3DEC36004702A0 /* odoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADB92C3DEC36004702A0 /* odoApp.swift */; };
 		D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADBB2C3DEC36004702A0 /* ContentView.swift */; };
 		D9EEADBE2C3DEC42004702A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9EEADBD2C3DEC42004702A0 /* Assets.xcassets */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D960DC6E2C40534C00722727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D960DC6F2C40535500722727 /* odo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = odo.entitlements; sourceTree = "<group>"; };
+		D960DC702C4053DA00722727 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		D9EEADB62C3DEC36004702A0 /* odo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = odo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EEADB92C3DEC36004702A0 /* odoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odoApp.swift; sourceTree = "<group>"; };
 		D9EEADBB2C3DEC36004702A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +41,7 @@
 		D9EEADAD2C3DEC36004702A0 = {
 			isa = PBXGroup;
 			children = (
+				D960DC702C4053DA00722727 /* HealthKitManager.swift */,
 				D9EEADB82C3DEC36004702A0 /* odo */,
 				D9EEADB72C3DEC36004702A0 /* Products */,
 			);
@@ -53,6 +58,8 @@
 		D9EEADB82C3DEC36004702A0 /* odo */ = {
 			isa = PBXGroup;
 			children = (
+				D960DC6F2C40535500722727 /* odo.entitlements */,
+				D960DC6E2C40534C00722727 /* Info.plist */,
 				D9EEADB92C3DEC36004702A0 /* odoApp.swift */,
 				D9EEADBB2C3DEC36004702A0 /* ContentView.swift */,
 				D9EEADC72C3DEDAB004702A0 /* OdometerView.swift */,
@@ -142,6 +149,7 @@
 			files = (
 				D9EEADC82C3DEDAB004702A0 /* OdometerView.swift in Sources */,
 				D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */,
+				D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */,
 				D9EEADBA2C3DEC36004702A0 /* odoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,12 +281,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = odo/odo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"odo/Preview Content\"";
 				DEVELOPMENT_TEAM = PDF936JKA3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = odo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Reading health data to display in app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -302,12 +314,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = odo/odo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"odo/Preview Content\"";
 				DEVELOPMENT_TEAM = PDF936JKA3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = odo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Reading health data to display in app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

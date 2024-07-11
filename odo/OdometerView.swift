@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OdometerView: View {
     
+    @StateObject var hkManager = HealthKitManager.shared
+    
     @Binding var steps: Int
     @State private var stepsArr: [Int]
     
@@ -17,7 +19,7 @@ struct OdometerView: View {
         self._steps = steps
         _stepsArr = State(initialValue: OdometerView.createStepsArray(from: steps.wrappedValue))
     }
-    
+
     
     static func createStepsArray(from number: Int) -> [Int] {
         let digits = String(number).compactMap { Int(String($0)) }

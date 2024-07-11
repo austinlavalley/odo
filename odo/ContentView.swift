@@ -9,23 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var stepCounter = 123456
-    
+    @StateObject var hkManager = HealthKitManager.shared
+
     var body: some View {
         VStack {
-            OdometerView(steps: $stepCounter)
-            
-            Button("+1") {
-                stepCounter += 1
-            }
-            
-            Button("Random") {
-                stepCounter = .random(in: 1...10000)
-            }
-            
-            Text(stepCounter.description)
+            OdometerView(steps: $hkManager.stepCountToday)
         }
-        .padding()
     }
 }
 
