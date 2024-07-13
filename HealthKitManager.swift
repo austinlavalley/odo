@@ -8,6 +8,7 @@
 import Foundation
 import HealthKit
 import WidgetKit
+import Combine
 
 class HealthKitManager: ObservableObject {
     static let shared = HealthKitManager()
@@ -20,9 +21,13 @@ class HealthKitManager: ObservableObject {
                                      4: 0, 5: 0, 6: 0, 7: 0]
     
     
+    private var timer: Timer?
+    private var cancellables = Set<AnyCancellable>()
+
     
     init() {
         requestAuthorization()
+        startUpdating()
     }
     
     
@@ -41,14 +46,65 @@ class HealthKitManager: ObservableObject {
         healthStore.requestAuthorization(toShare: nil, read: toReads) {
             success, error in
             if success {
-                self.fetchAllDatas()
+                self.fetchAllData()
             } else {
                 print("\(String(describing: error))")
             }
         }
     }
     
-    func fetchAllDatas() {
+    
+    
+    func startUpdating() {
+        // Start a timer to update step count periodically (e.g., every 5 minutes)
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            self.readStepCountToday()
+        }
+        
+        // Immediately fetch the initial step count
+        readStepCountToday()
+    }
+    
+    func readStepCountToday() {
+        guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
+            return
+        }
+        
+        let now = Date()
+        let startDate = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: now,
+            options: .strictStartDate
+        )
+        
+        let query = HKStatisticsQuery(
+            quantityType: stepCountType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum
+        ) {
+            _, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+                print("failed to read step count: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
+                return
+            }
+            
+            let steps = Int(sum.doubleValue(for: HKUnit.count()))
+            
+            DispatchQueue.main.async {
+                self.stepCountToday = steps
+                UserDefaults(suiteName: "group.iWalker")?.set(self.stepCountToday, forKey: "widgetStep")
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    
+    
+    
+    func fetchAllData() {
         print("////////////////////////////////////////")
         print("Attempting to fetch all Datas")
         readStepCountYesterday()
@@ -95,36 +151,7 @@ class HealthKitManager: ObservableObject {
         healthStore.execute(query)
     }
     
-    func readStepCountToday() {
-        guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
-            return
-        }
-        
-        let now = Date()
-        let startDate = Calendar.current.startOfDay(for: now)
-        let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
-            end: now,
-            options: .strictStartDate
-        )
-        
-        
-        let query = HKStatisticsQuery(
-            quantityType: stepCountType,
-            quantitySamplePredicate: predicate,
-            options: .cumulativeSum
-        ) {
-            _, result, error in
-            guard let result = result, let sum = result.sumQuantity() else {
-                print("failed to read step count: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
-                return
-            }
-            
-            let steps = Int(sum.doubleValue(for: HKUnit.count()))
-            self.stepCountToday = steps
-        }
-        healthStore.execute(query)
-    }
+
     
  
     
