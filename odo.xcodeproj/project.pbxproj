@@ -14,6 +14,10 @@
 		D9D9D9842C4443B3007F33E3 /* StepCountWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9832C4443B3007F33E3 /* StepCountWidget.swift */; };
 		D9D9D9862C4443B4007F33E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D9D9852C4443B4007F33E3 /* Assets.xcassets */; };
 		D9D9D98A2C4443B4007F33E3 /* StepCountWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9D9D97A2C4443B3007F33E3 /* StepCountWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D9D9D9932C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9922C4446FE007F33E3 /* StepCountWidgetView.swift */; };
+		D9D9D9942C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9922C4446FE007F33E3 /* StepCountWidgetView.swift */; };
+		D9D9D9962C444760007F33E3 /* StepCountWidgetShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9952C444760007F33E3 /* StepCountWidgetShared.swift */; };
+		D9D9D9972C444760007F33E3 /* StepCountWidgetShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9952C444760007F33E3 /* StepCountWidgetShared.swift */; };
 		D9EEADBA2C3DEC36004702A0 /* odoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADB92C3DEC36004702A0 /* odoApp.swift */; };
 		D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADBB2C3DEC36004702A0 /* ContentView.swift */; };
 		D9EEADBE2C3DEC42004702A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9EEADBD2C3DEC42004702A0 /* Assets.xcassets */; };
@@ -57,6 +61,8 @@
 		D9D9D9852C4443B4007F33E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9D9D9872C4443B4007F33E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D9D98F2C4444EA007F33E3 /* StepCountWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StepCountWidgetExtension.entitlements; sourceTree = "<group>"; };
+		D9D9D9922C4446FE007F33E3 /* StepCountWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidgetView.swift; sourceTree = "<group>"; };
+		D9D9D9952C444760007F33E3 /* StepCountWidgetShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidgetShared.swift; sourceTree = "<group>"; };
 		D9EEADB62C3DEC36004702A0 /* odo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = odo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EEADB92C3DEC36004702A0 /* odoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odoApp.swift; sourceTree = "<group>"; };
 		D9EEADBB2C3DEC36004702A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,7 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				D9D9D9812C4443B3007F33E3 /* StepCountWidgetBundle.swift */,
+				D9D9D9952C444760007F33E3 /* StepCountWidgetShared.swift */,
 				D9D9D9832C4443B3007F33E3 /* StepCountWidget.swift */,
+				D9D9D9922C4446FE007F33E3 /* StepCountWidgetView.swift */,
 				D9D9D9852C4443B4007F33E3 /* Assets.xcassets */,
 				D9D9D9872C4443B4007F33E3 /* Info.plist */,
 			);
@@ -251,6 +259,8 @@
 			files = (
 				D9D9D9822C4443B3007F33E3 /* StepCountWidgetBundle.swift in Sources */,
 				D9D9D9842C4443B3007F33E3 /* StepCountWidget.swift in Sources */,
+				D9D9D9972C444760007F33E3 /* StepCountWidgetShared.swift in Sources */,
+				D9D9D9942C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D9D9962C444760007F33E3 /* StepCountWidgetShared.swift in Sources */,
 				D9EEADC82C3DEDAB004702A0 /* OdometerView.swift in Sources */,
 				D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */,
 				D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */,
+				D9D9D9932C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */,
 				D9EEADBA2C3DEC36004702A0 /* odoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
