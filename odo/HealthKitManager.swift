@@ -93,7 +93,7 @@ class HealthKitManager: ObservableObject {
             
             DispatchQueue.main.async {
                 self.stepCountToday = steps
-                UserDefaults(suiteName: "group.iWalker")?.set(self.stepCountToday, forKey: "widgetStep")
+                UserDefaults(suiteName: "group.odo")?.set(self.stepCountToday, forKey: "widgetStep")
                 WidgetCenter.shared.reloadAllTimelines()
             }
         }
@@ -115,7 +115,7 @@ class HealthKitManager: ObservableObject {
         print("\(stepCountToday) steps today")
         print("////////////////////////////////////////")
         
-        UserDefaults(suiteName: "group.iWalker")?.set(stepCountToday, forKey: "widgetStep")
+        UserDefaults(suiteName: "group.odo")?.set(stepCountToday, forKey: "widgetStep")
         
         WidgetCenter.shared.reloadAllTimelines()
     }

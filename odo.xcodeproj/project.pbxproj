@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960DC702C4053DA00722727 /* HealthKitManager.swift */; };
+		D9D9D97D2C4443B3007F33E3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D9D97C2C4443B3007F33E3 /* WidgetKit.framework */; };
+		D9D9D97F2C4443B3007F33E3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D9D97E2C4443B3007F33E3 /* SwiftUI.framework */; };
+		D9D9D9822C4443B3007F33E3 /* StepCountWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9812C4443B3007F33E3 /* StepCountWidgetBundle.swift */; };
+		D9D9D9842C4443B3007F33E3 /* StepCountWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9832C4443B3007F33E3 /* StepCountWidget.swift */; };
+		D9D9D9862C4443B4007F33E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D9D9852C4443B4007F33E3 /* Assets.xcassets */; };
+		D9D9D98A2C4443B4007F33E3 /* StepCountWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D9D9D97A2C4443B3007F33E3 /* StepCountWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9EEADBA2C3DEC36004702A0 /* odoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADB92C3DEC36004702A0 /* odoApp.swift */; };
 		D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADBB2C3DEC36004702A0 /* ContentView.swift */; };
 		D9EEADBE2C3DEC42004702A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9EEADBD2C3DEC42004702A0 /* Assets.xcassets */; };
@@ -15,10 +21,42 @@
 		D9EEADC82C3DEDAB004702A0 /* OdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADC72C3DEDAB004702A0 /* OdometerView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D9D9D9882C4443B4007F33E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9EEADAE2C3DEC36004702A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9D9D9792C4443B3007F33E3;
+			remoteInfo = StepCountWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D9D9D98B2C4443B4007F33E3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D9D9D98A2C4443B4007F33E3 /* StepCountWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D960DC6E2C40534C00722727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D960DC6F2C40535500722727 /* odo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = odo.entitlements; sourceTree = "<group>"; };
 		D960DC702C4053DA00722727 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		D9D9D97A2C4443B3007F33E3 /* StepCountWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StepCountWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9D9D97C2C4443B3007F33E3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D9D9D97E2C4443B3007F33E3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D9D9D9812C4443B3007F33E3 /* StepCountWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidgetBundle.swift; sourceTree = "<group>"; };
+		D9D9D9832C4443B3007F33E3 /* StepCountWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidget.swift; sourceTree = "<group>"; };
+		D9D9D9852C4443B4007F33E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9D9D9872C4443B4007F33E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9D9D98F2C4444EA007F33E3 /* StepCountWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StepCountWidgetExtension.entitlements; sourceTree = "<group>"; };
 		D9EEADB62C3DEC36004702A0 /* odo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = odo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EEADB92C3DEC36004702A0 /* odoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = odoApp.swift; sourceTree = "<group>"; };
 		D9EEADBB2C3DEC36004702A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -28,6 +66,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D9D9D9772C4443B3007F33E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9D9D97F2C4443B3007F33E3 /* SwiftUI.framework in Frameworks */,
+				D9D9D97D2C4443B3007F33E3 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9EEADB32C3DEC36004702A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,11 +85,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D9D9D97B2C4443B3007F33E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9D9D97C2C4443B3007F33E3 /* WidgetKit.framework */,
+				D9D9D97E2C4443B3007F33E3 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9D9D9802C4443B3007F33E3 /* StepCountWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D9D9D9812C4443B3007F33E3 /* StepCountWidgetBundle.swift */,
+				D9D9D9832C4443B3007F33E3 /* StepCountWidget.swift */,
+				D9D9D9852C4443B4007F33E3 /* Assets.xcassets */,
+				D9D9D9872C4443B4007F33E3 /* Info.plist */,
+			);
+			path = StepCountWidget;
+			sourceTree = "<group>";
+		};
 		D9EEADAD2C3DEC36004702A0 = {
 			isa = PBXGroup;
 			children = (
-				D960DC702C4053DA00722727 /* HealthKitManager.swift */,
+				D9D9D98F2C4444EA007F33E3 /* StepCountWidgetExtension.entitlements */,
 				D9EEADB82C3DEC36004702A0 /* odo */,
+				D9D9D9802C4443B3007F33E3 /* StepCountWidget */,
+				D9D9D97B2C4443B3007F33E3 /* Frameworks */,
 				D9EEADB72C3DEC36004702A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				D9EEADB62C3DEC36004702A0 /* odo.app */,
+				D9D9D97A2C4443B3007F33E3 /* StepCountWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +128,7 @@
 		D9EEADB82C3DEC36004702A0 /* odo */ = {
 			isa = PBXGroup;
 			children = (
+				D960DC702C4053DA00722727 /* HealthKitManager.swift */,
 				D960DC6F2C40535500722727 /* odo.entitlements */,
 				D960DC6E2C40534C00722727 /* Info.plist */,
 				D9EEADB92C3DEC36004702A0 /* odoApp.swift */,
@@ -80,6 +151,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D9D9D9792C4443B3007F33E3 /* StepCountWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9D9D98E2C4443B4007F33E3 /* Build configuration list for PBXNativeTarget "StepCountWidgetExtension" */;
+			buildPhases = (
+				D9D9D9762C4443B3007F33E3 /* Sources */,
+				D9D9D9772C4443B3007F33E3 /* Frameworks */,
+				D9D9D9782C4443B3007F33E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StepCountWidgetExtension;
+			productName = StepCountWidgetExtension;
+			productReference = D9D9D97A2C4443B3007F33E3 /* StepCountWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D9EEADB52C3DEC36004702A0 /* odo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9EEADC42C3DEC42004702A0 /* Build configuration list for PBXNativeTarget "odo" */;
@@ -87,10 +175,12 @@
 				D9EEADB22C3DEC36004702A0 /* Sources */,
 				D9EEADB32C3DEC36004702A0 /* Frameworks */,
 				D9EEADB42C3DEC36004702A0 /* Resources */,
+				D9D9D98B2C4443B4007F33E3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D9D9D9892C4443B4007F33E3 /* PBXTargetDependency */,
 			);
 			name = odo;
 			productName = odo;
@@ -107,6 +197,9 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					D9D9D9792C4443B3007F33E3 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					D9EEADB52C3DEC36004702A0 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -126,11 +219,20 @@
 			projectRoot = "";
 			targets = (
 				D9EEADB52C3DEC36004702A0 /* odo */,
+				D9D9D9792C4443B3007F33E3 /* StepCountWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D9D9D9782C4443B3007F33E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9D9D9862C4443B4007F33E3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9EEADB42C3DEC36004702A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -143,6 +245,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D9D9D9762C4443B3007F33E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9D9D9822C4443B3007F33E3 /* StepCountWidgetBundle.swift in Sources */,
+				D9D9D9842C4443B3007F33E3 /* StepCountWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9EEADB22C3DEC36004702A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,7 +267,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D9D9D9892C4443B4007F33E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9D9D9792C4443B3007F33E3 /* StepCountWidgetExtension */;
+			targetProxy = D9D9D9882C4443B4007F33E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D9D9D98C2C4443B4007F33E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StepCountWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PDF936JKA3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StepCountWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StepCountWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.austinlavalley.odo.StepCountWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D9D9D98D2C4443B4007F33E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StepCountWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PDF936JKA3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StepCountWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StepCountWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.austinlavalley.odo.StepCountWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D9EEADC22C3DEC42004702A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -279,6 +454,7 @@
 		D9EEADC52C3DEC42004702A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = odo/odo.entitlements;
@@ -313,6 +489,7 @@
 		D9EEADC62C3DEC42004702A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = odo/odo.entitlements;
@@ -347,6 +524,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D9D9D98E2C4443B4007F33E3 /* Build configuration list for PBXNativeTarget "StepCountWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9D9D98C2C4443B4007F33E3 /* Debug */,
+				D9D9D98D2C4443B4007F33E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D9EEADB12C3DEC36004702A0 /* Build configuration list for PBXProject "odo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
