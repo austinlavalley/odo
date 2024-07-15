@@ -11,13 +11,17 @@ struct OdometerView: View {
     
     @StateObject var hkManager = HealthKitManager.shared
     
-    @Binding var steps: Int
+//    @Binding var steps: Int
+    var steps: Int
     @State private var stepsArr: [Int]
     
     
-    init(steps: Binding<Int>) {
-        self._steps = steps
-        _stepsArr = State(initialValue: OdometerView.createStepsArray(from: steps.wrappedValue))
+//    init(steps: Binding<Int>) {
+    init(steps: Int) {
+        self.steps = steps
+//        _stepsArr = State(initialValue: OdometerView.createStepsArray(from: steps.wrappedValue))
+        _stepsArr = State(initialValue: OdometerView.createStepsArray(from: steps))
+
     }
 
     
@@ -52,7 +56,8 @@ struct OdometerView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    OdometerView(steps: .constant(123456))
+//    OdometerView(steps: .constant(123456))
+    OdometerView(steps: 123456)
 }
 
 

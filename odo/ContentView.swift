@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            OdometerView(steps: $hkManager.stepCountToday)
+            OdometerView(steps: hkManager.stepCountToday)
         }
     }
 }

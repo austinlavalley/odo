@@ -28,7 +28,7 @@ struct StepCountProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (StepCountEntry) -> ()) {
-        let entry = StepCountEntry(date: Date(), stepCount: UserDefaults(suiteName: "group.iWalker")?.integer(forKey: "widgetStep") ?? 0)
+        let entry = StepCountEntry(date: Date(), stepCount: UserDefaults(suiteName: "group.odo")?.integer(forKey: "widgetStepToday") ?? 0)
         completion(entry)
     }
 
@@ -36,7 +36,7 @@ struct StepCountProvider: TimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         
-        let stepCount = UserDefaults(suiteName: "group.iWalker")?.integer(forKey: "widgetStep") ?? 0
+        let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: "widgetStepToday") ?? 0
         let entry = StepCountEntry(date: currentDate, stepCount: stepCount)
         
         let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
