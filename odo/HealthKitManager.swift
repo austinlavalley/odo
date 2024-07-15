@@ -70,6 +70,8 @@ class HealthKitManager: ObservableObject {
             return
         }
         
+        print("readStepCountToday() ran")
+        
         let now = Date()
         let startDate = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(
@@ -96,6 +98,7 @@ class HealthKitManager: ObservableObject {
                 UserDefaults(suiteName: "group.odo")?.set(self.stepCountToday, forKey: "widgetStepToday")
                 WidgetCenter.shared.reloadAllTimelines()
             }
+            
         }
         
         healthStore.execute(query)
@@ -119,6 +122,9 @@ class HealthKitManager: ObservableObject {
         
         WidgetCenter.shared.reloadAllTimelines()
     }
+    
+    
+    
     
     func readStepCountYesterday() {
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
