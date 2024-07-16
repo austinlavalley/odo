@@ -20,6 +20,8 @@ class HealthKitManager: ObservableObject {
     var thisWeekSteps: [Int: Int] = [1: 0, 2: 0, 3: 0,
                                      4: 0, 5: 0, 6: 0, 7: 0]
     
+    @Published var updateTime: Date?
+    
     
     private var timer: Timer?
     private var cancellables = Set<AnyCancellable>()
@@ -29,6 +31,8 @@ class HealthKitManager: ObservableObject {
         requestAuthorization()
         startUpdating()
     }
+    
+    
     
     
     func requestAuthorization() {
@@ -55,15 +59,25 @@ class HealthKitManager: ObservableObject {
     
     
     
+    
+    
+    
     func startUpdating() {
         // Start a timer to update step count periodically (e.g., every 5 minutes)
         timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
             self.readStepCountToday()
+            
+            self.updateTime = Date.now
         }
         
         // Immediately fetch the initial step count
         readStepCountToday()
     }
+    
+    
+    
+    
+    
     
     func readStepCountToday() {
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
@@ -95,7 +109,7 @@ class HealthKitManager: ObservableObject {
             
             DispatchQueue.main.async {
                 self.stepCountToday = steps
-                UserDefaults(suiteName: "group.odo")?.set(self.stepCountToday, forKey: "widgetStepToday")
+                UserDefaults(suiteName: "group.odo")?.set(self.stepCountToday, forKey: "widgetStep")
                 WidgetCenter.shared.reloadAllTimelines()
             }
             
@@ -118,7 +132,7 @@ class HealthKitManager: ObservableObject {
         print("\(stepCountToday) steps today")
         print("////////////////////////////////////////")
         
-        UserDefaults(suiteName: "group.odo")?.set(stepCountToday, forKey: "widgetStepToday")
+        UserDefaults(suiteName: "group.odo")?.set(stepCountToday, forKey: "widgetStep")
         
         WidgetCenter.shared.reloadAllTimelines()
     }
