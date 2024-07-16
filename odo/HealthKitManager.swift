@@ -20,9 +20,6 @@ class HealthKitManager: ObservableObject {
     var thisWeekSteps: [Int: Int] = [1: 0, 2: 0, 3: 0,
                                      4: 0, 5: 0, 6: 0, 7: 0]
     
-    @Published var updateTime: Date?
-    
-    
     private var timer: Timer?
     private var cancellables = Set<AnyCancellable>()
 
@@ -66,8 +63,6 @@ class HealthKitManager: ObservableObject {
         // Start a timer to update step count periodically (e.g., every 5 minutes)
         timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
             self.readStepCountToday()
-            
-            self.updateTime = Date.now
         }
         
         // Immediately fetch the initial step count
