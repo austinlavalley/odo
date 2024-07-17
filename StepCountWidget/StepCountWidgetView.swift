@@ -15,7 +15,7 @@ struct StepCountWidgetEntryView : View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("Steps").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
+            Text("Steps Today").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
             OdometerView(steps: entry.stepCount)
 //            Spacer()
         }
