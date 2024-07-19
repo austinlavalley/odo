@@ -60,25 +60,7 @@ struct MainView: View {
 }
 
 
-struct SettingsView: View {
-    var body: some View {
-        VStack {
-            HStack {
-                Text("Day Start - 24h period")
-            }
-            .frame(maxWidth: .infinity, maxHeight: 72)
-            .font(.subheadline).fontDesign(.monospaced).bold()
-            .foregroundStyle(.white)
-            .background(.black)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay { RoundedRectangle(cornerRadius: 12).stroke(.white, lineWidth: 2) }
-        }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
-            .foregroundColor(.white)
-            .font(.title)
-    }
-}
+
 
 
 #Preview {

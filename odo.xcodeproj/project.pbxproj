@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D95038782C457F0900DDE08E /* OdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EEADC72C3DEDAB004702A0 /* OdometerView.swift */; };
 		D95038792C457F2200DDE08E /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960DC702C4053DA00722727 /* HealthKitManager.swift */; };
+		D950387B2C4ADD2700DDE08E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950387A2C4ADD2700DDE08E /* SettingsView.swift */; };
+		D950387C2C4ADD2700DDE08E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950387A2C4ADD2700DDE08E /* SettingsView.swift */; };
+		D950387E2C4AE97400DDE08E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950387D2C4AE97400DDE08E /* NotificationManager.swift */; };
+		D950387F2C4AE97400DDE08E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950387D2C4AE97400DDE08E /* NotificationManager.swift */; };
 		D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960DC702C4053DA00722727 /* HealthKitManager.swift */; };
 		D9D9D97D2C4443B3007F33E3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D9D97C2C4443B3007F33E3 /* WidgetKit.framework */; };
 		D9D9D97F2C4443B3007F33E3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D9D97E2C4443B3007F33E3 /* SwiftUI.framework */; };
@@ -52,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D950387A2C4ADD2700DDE08E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D950387D2C4AE97400DDE08E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		D960DC6E2C40534C00722727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D960DC6F2C40535500722727 /* odo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = odo.entitlements; sourceTree = "<group>"; };
 		D960DC702C4053DA00722727 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 				D960DC6E2C40534C00722727 /* Info.plist */,
 				D9EEADB92C3DEC36004702A0 /* odoApp.swift */,
 				D9EEADBB2C3DEC36004702A0 /* ContentView.swift */,
+				D950387D2C4AE97400DDE08E /* NotificationManager.swift */,
+				D950387A2C4ADD2700DDE08E /* SettingsView.swift */,
 				D9EEADC72C3DEDAB004702A0 /* OdometerView.swift */,
 				D9EEADBD2C3DEC42004702A0 /* Assets.xcassets */,
 				D9EEADBF2C3DEC42004702A0 /* Preview Content */,
@@ -259,11 +267,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D950387C2C4ADD2700DDE08E /* SettingsView.swift in Sources */,
 				D95038792C457F2200DDE08E /* HealthKitManager.swift in Sources */,
 				D95038782C457F0900DDE08E /* OdometerView.swift in Sources */,
 				D9D9D9822C4443B3007F33E3 /* StepCountWidgetBundle.swift in Sources */,
 				D9D9D9842C4443B3007F33E3 /* StepCountWidget.swift in Sources */,
 				D9D9D9972C444760007F33E3 /* StepCountWidgetShared.swift in Sources */,
+				D950387F2C4AE97400DDE08E /* NotificationManager.swift in Sources */,
 				D9D9D9942C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,11 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D950387B2C4ADD2700DDE08E /* SettingsView.swift in Sources */,
 				D9D9D9962C444760007F33E3 /* StepCountWidgetShared.swift in Sources */,
 				D9EEADC82C3DEDAB004702A0 /* OdometerView.swift in Sources */,
 				D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */,
 				D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */,
 				D9D9D9932C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */,
+				D950387E2C4AE97400DDE08E /* NotificationManager.swift in Sources */,
 				D9EEADBA2C3DEC36004702A0 /* odoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

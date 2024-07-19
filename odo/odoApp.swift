@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct odoApp: App {
+    
+    var notificationManager = NotificationManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
