@@ -44,8 +44,8 @@ class NotificationManager: ObservableObject {
         let identifier = "notif-one"
         let title = "TITLE"
         let body = "BODY"
-        let hour = 13
-        let minute = 57
+        let hour = 10
+        let minute = 22
         let isDaily = true
         
         let notificationCenter = UNUserNotificationCenter.current()
