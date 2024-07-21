@@ -12,10 +12,8 @@ struct ContentView: View {
     @State private var offset: CGFloat = 0
     @State private var showSettings = false
     @State private var isDragging = false
-    @State private var extraOffset: CGFloat = 0
 
-    private let dragSensitivity: CGFloat = 0.5
-    private let springStiffness: CGFloat = 0.3
+    private let dragThreshold: CGFloat = 25 // Adjust this value as needed
 
     var body: some View {
         NavigationStack {
@@ -27,56 +25,64 @@ struct ContentView: View {
                             DragGesture()
                                 .onChanged { value in
                                     isDragging = true
-                                    let dragAmount = value.translation.height * dragSensitivity
-                                    let proposedOffset = offset - dragAmount
-                                    
-                                    if proposedOffset < 0 {
-                                        offset = 0
-                                        extraOffset = proposedOffset * springStiffness
-                                    } else if proposedOffset > geometry.size.height {
-                                        offset = geometry.size.height
-                                        extraOffset = (proposedOffset - geometry.size.height) * -springStiffness
-                                    } else {
-                                        offset = proposedOffset
-                                        extraOffset = 0
-                                    }
                                 }
                                 .onEnded { value in
                                     isDragging = false
-                                    let velocityY = (value.predictedEndLocation.y - value.location.y) * dragSensitivity
-                                    let shouldOpen = offset > geometry.size.height / 2 || velocityY < -300
-                                    withAnimation(.spring()) {
-                                        offset = shouldOpen ? geometry.size.height : 0
-                                        showSettings = shouldOpen
-                                        extraOffset = 0
+                                    let dragAmount = -value.translation.height
+                                    let velocityY = value.predictedEndLocation.y - value.location.y
+                                    
+                                    if showSettings {
+                                        // Currently showing settings, check for upward drag
+                                        if dragAmount < -dragThreshold || velocityY > 300 {
+                                            withAnimation(.spring()) {
+                                                showSettings = false
+                                                offset = 0
+                                            }
+                                        } else {
+                                            withAnimation(.spring()) {
+                                                offset = geometry.size.height // Stay in settings view
+                                            }
+                                        }
+                                    } else {
+                                        // Currently showing main view, check for downward drag
+                                        if dragAmount > dragThreshold || velocityY < -300 {
+                                            withAnimation(.spring()) {
+                                                showSettings = true
+                                                offset = geometry.size.height
+                                            }
+                                        } else {
+                                            withAnimation(.spring()) {
+                                                offset = 0 // Stay in main view
+                                            }
+                                        }
                                     }
                                 }
                         )
                     
                     MainView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(y: -offset - extraOffset)
+                        .offset(y: -offset)
                     
                     SettingsView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(y: geometry.size.height - offset + extraOffset)
+                        .offset(y: geometry.size.height - offset)
                 }
-                .animation(isDragging ? .spring(response: 0.3, dampingFraction: 0.7) : .spring(), value: extraOffset)
-                .animation(isDragging ? nil : .spring(), value: offset)
-            }
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: {
-                        withAnimation(.spring()) {
-                            showSettings.toggle()
-                            offset = showSettings ? UIScreen.main.bounds.height : 0
-                            extraOffset = 0  // Reset extra offset when using toolbar
+                
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                showSettings.toggle()
+                                offset = showSettings ? geometry.size.height : 0
+                            }
+                        }) {
+                            Image(systemName: "gear")
+                                .foregroundColor(.white)
                         }
-                    }) {
-                        Image(systemName: "gear")
-                            .foregroundColor(.white)
                     }
                 }
+                
+                
             }
         }
     }
