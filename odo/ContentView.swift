@@ -10,10 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var hkManager = HealthKitManager.shared
     @State private var offset: CGFloat = 0
+    @State private var dragOffset: CGFloat = 0
     @State private var showSettings = false
     @State private var isDragging = false
 
-    private let dragThreshold: CGFloat = 25 // Adjust this value as needed
+    private let dragThreshold: CGFloat = 50
+    private let maxDragOffset: CGFloat = 100 // Maximum drag offset for visual feedback
 
     var body: some View {
         NavigationStack {
@@ -25,47 +27,52 @@ struct ContentView: View {
                             DragGesture()
                                 .onChanged { value in
                                     isDragging = true
+                                    
+                                    let dragAmount = value.translation.height
+                                    dragOffset = dragAmount.clamped(to: -maxDragOffset...maxDragOffset)
                                 }
                                 .onEnded { value in
                                     isDragging = false
-                                    let dragAmount = -value.translation.height
+                                    let dragAmount = value.translation.height
                                     let velocityY = value.predictedEndLocation.y - value.location.y
                                     
                                     if showSettings {
-                                        // Currently showing settings, check for upward drag
-                                        if dragAmount < -dragThreshold || velocityY > 300 {
+                                        if dragAmount > dragThreshold || velocityY > 300 {
                                             withAnimation(.spring()) {
                                                 showSettings = false
                                                 offset = 0
                                             }
                                         } else {
                                             withAnimation(.spring()) {
-                                                offset = geometry.size.height // Stay in settings view
+                                                offset = geometry.size.height
                                             }
                                         }
                                     } else {
-                                        // Currently showing main view, check for downward drag
-                                        if dragAmount > dragThreshold || velocityY < -300 {
+                                        if dragAmount < -dragThreshold || velocityY < -300 {
                                             withAnimation(.spring()) {
                                                 showSettings = true
                                                 offset = geometry.size.height
                                             }
                                         } else {
                                             withAnimation(.spring()) {
-                                                offset = 0 // Stay in main view
+                                                offset = 0
                                             }
                                         }
+                                    }
+                                    withAnimation(.spring()) {
+                                        dragOffset = 0 // Reset drag offset
                                     }
                                 }
                         )
                     
                     MainView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(y: -offset)
+                        .offset(y: -offset + (showSettings ? 0 : dragOffset))
+
                     
                     SettingsView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(y: geometry.size.height - offset)
+                        .offset(y: geometry.size.height - offset + (showSettings ? dragOffset : 0))
                 }
                 
                 .toolbar {
@@ -76,7 +83,7 @@ struct ContentView: View {
                                 offset = showSettings ? geometry.size.height : 0
                             }
                         }) {
-                            Image(systemName: "gear")
+                            Image(systemName: showSettings ? "arrow.up" : "gear")
                                 .foregroundColor(.white)
                         }
                     }
@@ -88,6 +95,11 @@ struct ContentView: View {
     }
 }
 
+extension Comparable {
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
+    }
+}
 
 struct MainView: View {
     @StateObject var hkManager = HealthKitManager.shared
