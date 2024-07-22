@@ -14,9 +14,10 @@ struct ContentView: View {
     @State private var showSettings = false
     @State private var isDragging = false
 
-    private let dragThreshold: CGFloat = 50
-    private let maxDragOffset: CGFloat = 100 // Maximum drag offset for visual feedback
+    private let dragThreshold: CGFloat = 50 // Adjusts drag distance to trigger view chance
+    private let dragResistanceFactor: CGFloat = 0.35 // Adjusts stretchiness
 
+    
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
@@ -29,7 +30,9 @@ struct ContentView: View {
                                     isDragging = true
                                     
                                     let dragAmount = value.translation.height
-                                    dragOffset = dragAmount.clamped(to: -maxDragOffset...maxDragOffset)
+                                    
+                                    // Applies diminishing effect
+                                    dragOffset = dragAmount * dragResistanceFactor
                                 }
                                 .onEnded { value in
                                     isDragging = false
@@ -95,11 +98,7 @@ struct ContentView: View {
     }
 }
 
-extension Comparable {
-    func clamped(to limits: ClosedRange<Self>) -> Self {
-        return min(max(self, limits.lowerBound), limits.upperBound)
-    }
-}
+
 
 struct MainView: View {
     @StateObject var hkManager = HealthKitManager.shared
