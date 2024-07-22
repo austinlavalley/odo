@@ -40,22 +40,27 @@ struct ContentView: View {
                                     let velocityY = value.predictedEndLocation.y - value.location.y
                                     
                                     if showSettings {
+                                    // If we're on the bottom view, and the user drags the minimum distance down OR drags down quick enough, trigger the animation to the above view
                                         if dragAmount > dragThreshold || velocityY > 300 {
                                             withAnimation(.spring()) {
                                                 showSettings = false
                                                 offset = 0
                                             }
+                                    // If drags and doesn't meet either requirements for a transition, reset the view with a spring animation
                                         } else {
                                             withAnimation(.spring()) {
                                                 offset = geometry.size.height
                                             }
                                         }
+                                        
                                     } else {
+                                    // If we're on the top view, and the user drags the minimum distance up OR drags up quick enough, trigger the animation to the below view
                                         if dragAmount < -dragThreshold || velocityY < -300 {
                                             withAnimation(.spring()) {
                                                 showSettings = true
                                                 offset = geometry.size.height
                                             }
+                                    // If drags and doesn't meet either requirements for a transition, reset the view with a spring animation
                                         } else {
                                             withAnimation(.spring()) {
                                                 offset = 0
@@ -109,13 +114,6 @@ struct MainView: View {
         OdometerView(steps: hkManager.stepCountToday)
         
         Spacer()
-        
-        VStack {
-            
-
-            
-            
-        }.padding()
     }
 }
 
