@@ -95,8 +95,7 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                }
-                
+                }                
                 
             }
         }

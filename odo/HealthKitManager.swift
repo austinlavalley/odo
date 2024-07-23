@@ -19,7 +19,8 @@ class HealthKitManager: ObservableObject {
     var stepCountYesterday: Int = 0
     var thisWeekSteps: [Int: Int] = [1: 0, 2: 0, 3: 0,
                                      4: 0, 5: 0, 6: 0, 7: 0]
-        
+    
+    
     private var timer: Timer?
     private var cancellables = Set<AnyCancellable>()
 

@@ -496,8 +496,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = odo/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Reading health data to display in app.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Reading and updating your step count.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Allows us to view and display your step count.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -531,8 +530,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = odo/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Reading health data to display in app.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Reading and updating your step count.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Allows us to view and display your step count.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

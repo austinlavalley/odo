@@ -22,7 +22,7 @@ struct SettingsView: View {
             Button {
                 //
             } label: {
-                Label("Privacy policy", systemImage: "")
+                Label("Terms & privacy", systemImage: "")
                     .labelStyle(SettingsButton())
             }
             
