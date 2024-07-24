@@ -9,9 +9,8 @@ import SwiftUI
 
 @main
 struct odoApp: App {
-    
     @StateObject var notificationManager = NotificationManager()
-    
+        
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -19,3 +18,19 @@ struct odoApp: App {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+extension Color {
+        static var backgroundColorSet: Color {
+            Color("background")
+        }
+    }

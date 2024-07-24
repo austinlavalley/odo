@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @StateObject var hkManager = HealthKitManager.shared
     @State private var offset: CGFloat = 0
     @State private var dragOffset: CGFloat = 0
@@ -16,7 +17,7 @@ struct ContentView: View {
 
     private let dragThreshold: CGFloat = 50 // Adjusts drag distance to trigger view chance
     private let dragResistanceFactor: CGFloat = 0.35 // Adjusts stretchiness
-
+    
     
     var body: some View {
         NavigationStack {
@@ -98,6 +99,7 @@ struct ContentView: View {
                 }                
                 
             }
+            .background(Color.backgroundColorSet)
         }
     }
 }

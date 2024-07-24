@@ -8,31 +8,38 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.openURL) var openURL
+    
     
     var body: some View {
         VStack(spacing: 12) {
+            Spacer()
             
             Button {
-                
+                withAnimation {
+                    
+                }
             } label: {
-                Label("Dark mode", systemImage: "")
+                Label("dark mode", systemImage: "")
                     .labelStyle(SettingsButton())
             }
             
             Button {
-                //
+                openURL(URL(string: "https://odo.austinlavalley.com")!)
             } label: {
                 Label("Terms & privacy", systemImage: "")
                     .labelStyle(SettingsButton())
             }
             
             Button {
-                //
+                openURL(URL(string: "https://odo.austinlavalley.com")!)
             } label: {
                 Label("Feedback", systemImage: "")
                     .labelStyle(SettingsButton())
             }
 
+            Spacer()
+            Text("by Austin in Austin for Austin").font(.caption).bold().foregroundColor(.secondary).padding(.bottom, 12)
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
