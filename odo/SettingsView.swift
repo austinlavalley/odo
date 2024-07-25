@@ -60,19 +60,33 @@ struct SettingsView: View {
                     }
                 
                 VStack {
-                    VStack {
+                    VStack(spacing: 24) {
                         
-                        Text("yo")
+                        Text("Using the odo widget").font(.title)
                         
+                        VStack(spacing: 24) {
+                            Text("To add our widget to your device, long-press on your home screen and tap the '+' button.")
+                            Text("Then scroll down or search for 'odo', and select ours to add to your home screen.")
+                        }.font(.subheadline).padding()
                         
                         Spacer()
                         Button("Close") { withAnimation(.spring) { showInstruction = false }}
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.gray)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                         
-                    }.padding()
+                    }
+                    .padding(.vertical, 24)
+                    .padding()
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    
                     
                     
                 }
-                .frame(maxWidth: .infinity, maxHeight: 480)
+                .frame(maxWidth: .infinity, maxHeight: 420)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 24))
                 .padding()
