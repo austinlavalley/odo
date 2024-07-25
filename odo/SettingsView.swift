@@ -10,42 +10,76 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.openURL) var openURL
     
+    @State private var showInstruction = true
     
     var body: some View {
-        VStack(spacing: 12) {
-            Spacer()
+        ZStack {
+            VStack(spacing: 12) {
+                Spacer()
+                
+                Button {
+                    withAnimation(.spring) {
+                        showInstruction.toggle()
+                    }
+                } label: {
+                    Label("How to use", systemImage: "")
+                        .labelStyle(SettingsButton())
+                }
+                
+                Button {
+                    openURL(URL(string: "https://odo.austinlavalley.com")!)
+                } label: {
+                    Label("Terms & privacy", systemImage: "")
+                        .labelStyle(SettingsButton())
+                }
+                
+                Button {
+                    openURL(URL(string: "https://odo.austinlavalley.com")!)
+                } label: {
+                    Label("Feedback", systemImage: "")
+                        .labelStyle(SettingsButton())
+                }
+                
+                Spacer()
+                Text("by Austin in Austin for Austin").font(.caption).bold().foregroundColor(.secondary).padding(.bottom, 12)
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+            .foregroundColor(.white)
+            .font(.title)
             
-            Button {
-                withAnimation {
+            
+            if showInstruction {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation(.spring) {
+                            showInstruction = false
+                        }
+                    }
+                
+                VStack {
+                    VStack {
+                        
+                        Text("yo")
+                        
+                        
+                        Spacer()
+                        Button("Close") { withAnimation(.spring) { showInstruction = false }}
+                        
+                    }.padding()
+                    
                     
                 }
-            } label: {
-                Label("dark mode", systemImage: "")
-                    .labelStyle(SettingsButton())
+                .frame(maxWidth: .infinity, maxHeight: 480)
+                .background(.thinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 24))
+                .padding()
             }
             
-            Button {
-                openURL(URL(string: "https://odo.austinlavalley.com")!)
-            } label: {
-                Label("Terms & privacy", systemImage: "")
-                    .labelStyle(SettingsButton())
-            }
-            
-            Button {
-                openURL(URL(string: "https://odo.austinlavalley.com")!)
-            } label: {
-                Label("Feedback", systemImage: "")
-                    .labelStyle(SettingsButton())
-            }
-
-            Spacer()
-            Text("by Austin in Austin for Austin").font(.caption).bold().foregroundColor(.secondary).padding(.bottom, 12)
             
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-        .foregroundColor(.white)
-        .font(.title)
     }
 }
 
