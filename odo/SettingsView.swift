@@ -70,12 +70,17 @@ struct SettingsView: View {
                         }.font(.subheadline).padding()
                         
                         Spacer()
-                        Button("Close") { withAnimation(.spring) { showInstruction = false }}
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(.white)
-                            .foregroundStyle(.black)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        Button {
+                            withAnimation(.spring) { showInstruction = false }
+                        } label: {
+                            Label("Close", systemImage: "")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(.white)
+                                .foregroundStyle(.black)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+
                         
                     }
                     .padding(.vertical, 24)
