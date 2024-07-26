@@ -77,7 +77,7 @@ class HealthKitManager: ObservableObject {
             return
         }
         
-        print("readStepCountToday() ran")
+//        print("readStepCountToday() ran")
         
         let now = Date()
         let startDate = Calendar.current.startOfDay(for: now)

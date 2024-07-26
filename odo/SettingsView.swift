@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.openURL) var openURL
     
-    @State private var showInstruction = true
+    @State private var showInstruction = false
     
     var body: some View {
         ZStack {
@@ -65,16 +65,16 @@ struct SettingsView: View {
                         Text("Using the odo widget").font(.title)
                         
                         VStack(spacing: 24) {
-                            Text("To add our widget to your device, long-press on your home screen and tap the '+' button.")
-                            Text("Then scroll down or search for 'odo', and select ours to add to your home screen.")
+                            Text("To add our widget to your device, long-press on your home screen and tap the '+' button at the top.")
+                            Text("Then scroll down or search for 'odo' to add our widget to your home screen.")
                         }.font(.subheadline).padding()
                         
                         Spacer()
                         Button("Close") { withAnimation(.spring) { showInstruction = false }}
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.gray)
-                            .foregroundStyle(.white)
+                            .background(.white)
+                            .foregroundStyle(.black)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                         
                     }
