@@ -43,7 +43,7 @@ struct OdometerView: View {
 
 
         }
-        .background(darkMode ? .black : .white)
+        .background(darkMode ? Color(red: 17/255, green: 17/255, blue: 17/255) : Color(red: 231/255, green: 231/255, blue: 232/255))
         
         .onChange(of: steps) { _, newSteps in
             withAnimation {

@@ -23,8 +23,8 @@ struct StepCountWidgetEntryView : View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(colorScheme == .dark ? .black : .white)
-        .containerBackground(colorScheme == .dark ? .black : .white, for: .widget)
+        .background(colorScheme == .dark ? Color(red: 17/255, green: 17/255, blue: 17/255) : Color(red: 231/255, green: 231/255, blue: 232/255))
+        .containerBackground(colorScheme == .dark ? Color(red: 17/255, green: 17/255, blue: 17/255) : Color(red: 231/255, green: 231/255, blue: 232/255), for: .widget)
     }
 }
 
