@@ -11,17 +11,20 @@ import WidgetKit
 
 
 struct StepCountWidgetEntryView : View {
+    @Environment(\.colorScheme) var colorScheme
+
     var entry: StepCountEntry
 
     var body: some View {
-        VStack(spacing: 0) {
-            Text("Steps Today").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
-            OdometerView(steps: entry.stepCount)
+        VStack(spacing: 8) {
+            Text("Steps Today").foregroundStyle(colorScheme != .dark ? .black.opacity(0.5) : .white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
+            OdometerView(steps: entry.stepCount, darkMode: colorScheme == .dark)
+//            Text("\(entry.date.description)").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(.black)
-        .containerBackground(.black, for: .widget)
+        .background(colorScheme == .dark ? .black : .white)
+        .containerBackground(colorScheme == .dark ? .black : .white, for: .widget)
     }
 }
 

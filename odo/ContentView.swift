@@ -112,7 +112,7 @@ struct MainView: View {
     var body: some View {
         Spacer()
         
-        OdometerView(steps: hkManager.stepCountToday)
+        OdometerView(steps: hkManager.stepCountToday, darkMode: true)
         
         Spacer()
     }

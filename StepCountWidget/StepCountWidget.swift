@@ -34,7 +34,7 @@ struct StepCountProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<StepCountEntry>) -> ()) {
         let currentDate = Date()
-        let refreshDate = Calendar.current.date(byAdding: .minute, value: 10, to: currentDate)!
+        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
         
         let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: "widgetStep") ?? 999999
         let entry = StepCountEntry(date: currentDate, stepCount: stepCount)

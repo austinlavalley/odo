@@ -11,12 +11,14 @@ struct OdometerView: View {
     
     @StateObject var hkManager = HealthKitManager.shared
     
+    let darkMode: Bool
     var steps: Int
     @State private var stepsArr: [Int]
     
     
-    init(steps: Int) {
+    init(steps: Int, darkMode: Bool) {
         self.steps = steps
+        self.darkMode = darkMode
         _stepsArr = State(initialValue: OdometerView.createStepsArray(from: steps))
 
     }
@@ -32,16 +34,16 @@ struct OdometerView: View {
     var body: some View {
         HStack(spacing: 4) {
             
-            DigitWheel(digit: stepsArr[0])
-            DigitWheel(digit: stepsArr[1])
-            DigitWheel(digit: stepsArr[2])
-            DigitWheel(digit: stepsArr[3])
-            DigitWheel(digit: stepsArr[4])
-            DigitWheel(digit: stepsArr[5])
+            DigitWheel(darkMode: darkMode, digit: stepsArr[0])
+            DigitWheel(darkMode: darkMode, digit: stepsArr[1])
+            DigitWheel(darkMode: darkMode, digit: stepsArr[2])
+            DigitWheel(darkMode: darkMode, digit: stepsArr[3])
+            DigitWheel(darkMode: darkMode, digit: stepsArr[4])
+            DigitWheel(darkMode: darkMode, digit: stepsArr[5])
 
 
         }
-        .background(.black)
+        .background(darkMode ? .black : .white)
         
         .onChange(of: steps) { _, newSteps in
             withAnimation {
@@ -53,23 +55,24 @@ struct OdometerView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    OdometerView(steps: 123456)
+    OdometerView(steps: 123456, darkMode: false)
 }
 
 
 
 struct DigitWheel: View {
+    let darkMode: Bool
     var digit: Int
     
     var body: some View {
         ZStack {
-            OdometerRect()
+            OdometerRect(darkMode: darkMode)
                 .frame(width: 48, height: 72)
             
             Text(digit.description)
                 .fontDesign(.monospaced)
                 .font(.largeTitle).bold()
-                .foregroundStyle(.white)
+                .foregroundStyle(darkMode ? .white : .black)
             
                 .contentTransition(.numericText())
         }
@@ -77,11 +80,14 @@ struct DigitWheel: View {
     
     
     struct OdometerRect: View {
+        let darkMode: Bool
+        
         let darkGray = Color(red: 45 / 255, green: 45 / 255, blue: 45 / 255)
+        let lightGray = Color(red: 210 / 255, green: 210 / 255, blue: 210 / 255)
 
         var body: some View {
             Rectangle()
-                .fill(LinearGradient(gradient: Gradient(colors: [.black, darkGray, .black]), startPoint: .top, endPoint: .bottom))
+                .fill(LinearGradient(gradient: Gradient(colors: darkMode ? [.black, darkGray, .black] : [.white, lightGray, .white]), startPoint: .top, endPoint: .bottom))
                 .frame(width: 48, height: 72)
         }
     }

@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.openURL) var openURL
     
+    @StateObject var hkManager = HealthKitManager.shared
+
     @State private var showInstruction = false
     
     var body: some View {
@@ -26,6 +28,7 @@ struct SettingsView: View {
                         .labelStyle(SettingsButton())
                 }
                 
+                
                 Button {
                     openURL(URL(string: "https://odo.austinlavalley.com")!)
                 } label: {
@@ -39,6 +42,7 @@ struct SettingsView: View {
                     Label("Feedback", systemImage: "")
                         .labelStyle(SettingsButton())
                 }
+                
                 
                 Spacer()
                 Text("by Austin in Austin for Austin").font(.caption).bold().foregroundColor(.secondary).padding(.bottom, 12)
