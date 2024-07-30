@@ -110,11 +110,20 @@ struct MainView: View {
     @StateObject var hkManager = HealthKitManager.shared
     
     var body: some View {
-        Spacer()
-        
-        OdometerView(steps: hkManager.stepCountToday, darkMode: true)
-        
-        Spacer()
+        VStack(spacing: 48) {
+            Spacer()
+            
+            VStack(spacing: 24) {
+                Text("Steps Today").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
+                OdometerView(steps: hkManager.stepCountToday, darkMode: true)
+            }
+            
+            VStack(spacing: 24) {
+                Text("Steps this week").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
+                OdometerView(steps: hkManager.thisWeekSteps.compactMap{ $0.value }.reduce(0, +), darkMode: true)
+            }
+            Spacer()
+        }
     }
 }
 
