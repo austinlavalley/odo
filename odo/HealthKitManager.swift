@@ -9,6 +9,7 @@ import Foundation
 import HealthKit
 import WidgetKit
 import Combine
+import SwiftUI
 
 class HealthKitManager: ObservableObject {
     static let shared = HealthKitManager()
@@ -20,6 +21,8 @@ class HealthKitManager: ObservableObject {
     var thisWeekSteps: [Int: Int] = [1: 0, 2: 0, 3: 0,
                                      4: 0, 5: 0, 6: 0, 7: 0]
     
+    @AppStorage("weekStartDay") private var weekStartDay: Int = 2 // Default to Monday (2)
+
     
     private var timer: Timer?
     private var cancellables = Set<AnyCancellable>()
@@ -173,23 +176,29 @@ class HealthKitManager: ObservableObject {
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
             return
         }
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        // Find the start date (Monday) of the current week
-        guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) else {
+        
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.firstWeekday = weekStartDay
+        
+        let now = Date()
+        let today = calendar.startOfDay(for: now)
+        
+        // Calculate the start of the week based on the user-defined start day
+        let weekdayOffset = (calendar.component(.weekday, from: today) - weekStartDay + 7) % 7
+        guard let startOfWeek = calendar.date(byAdding: .day, value: -weekdayOffset, to: today) else {
             print("Failed to calculate the start date of the week.")
             return
         }
-        // Find the end date (Sunday) of the current week
-        guard let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) else {
+        
+        // Calculate the end of the week (7 days after start, to include the full current day)
+        guard let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek) else {
             print("Failed to calculate the end date of the week.")
             return
         }
         
-        
         let predicate = HKQuery.predicateForSamples(
             withStart: startOfWeek,
-            end: endOfWeek,
+            end: now,  // Use current time instead of end of day
             options: .strictStartDate
         )
         
@@ -201,26 +210,31 @@ class HealthKitManager: ObservableObject {
             intervalComponents: DateComponents(day: 1)
         )
         
-        query.initialResultsHandler = { _, result, error in
-            guard let result = result else {
+        query.initialResultsHandler = { [weak self] _, result, error in
+            guard let self = self, let result = result else {
                 if let error = error {
                     print("An error occurred while retrieving step count: \(error.localizedDescription)")
                 }
                 return
             }
             
-            //      print("---> ---> ATTEMPTING TO GET WEEK's STEPS")
-            result.enumerateStatistics(from: startOfWeek, to: endOfWeek) { statistics, _ in
+            DispatchQueue.main.async {
+                self.thisWeekSteps = [:]  // Reset the dictionary
+            }
+            
+            result.enumerateStatistics(from: startOfWeek, to: now) { statistics, _ in
                 if let quantity = statistics.sumQuantity() {
                     let steps = Int(quantity.doubleValue(for: HKUnit.count()))
                     let day = calendar.component(.weekday, from: statistics.startDate)
-                    //          print("for day \(weekday) u have \(steps) steps!")
-                    self.thisWeekSteps[day] = steps
+                    DispatchQueue.main.async {
+                        self.thisWeekSteps[day] = steps
+                    }
                 }
             }
             
-            print("\(self.thisWeekSteps)")
+            print(self.thisWeekSteps)
         }
+        
         healthStore.execute(query)
     }
 }

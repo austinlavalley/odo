@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.openURL) var openURL
+    @AppStorage("weekStartDay") private var weekStartDay: Int = 2 // Default to Monday (2)
     
     @StateObject var hkManager = HealthKitManager.shared
 
@@ -18,6 +19,20 @@ struct SettingsView: View {
         ZStack {
             VStack(spacing: 12) {
                 Spacer()
+                
+                Picker("Week Starts On", selection: $weekStartDay) {
+                    Text("Sunday").tag(1)
+                    Text("Monday").tag(2)
+                    Text("Tuesday").tag(3)
+                    Text("Wednesday").tag(4)
+                    Text("Thursday").tag(5)
+                    Text("Friday").tag(6)
+                    Text("Saturday").tag(7)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: weekStartDay) { _, _ in
+                    hkManager.readStepCountThisWeek()
+                }
                 
                 Button {
                     withAnimation(.spring) {
