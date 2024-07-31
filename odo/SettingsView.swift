@@ -7,12 +7,36 @@
 
 import SwiftUI
 
+struct WeekStartPicker: View {
+    @StateObject var hkManager = HealthKitManager.shared
+
+    @AppStorage("weekStartDay") private var weekStartDay: Int = 2 // Default to Monday (2)
+
+    var body: some View {
+        Picker("Week Starts On", selection: $weekStartDay) {
+            Text("Sunday").tag(1)
+            Text("Monday").tag(2)
+            Text("Tuesday").tag(3)
+            Text("Wednesday").tag(4)
+            Text("Thursday").tag(5)
+            Text("Friday").tag(6)
+            Text("Saturday").tag(7)
+        }
+        .bold()
+        .pickerStyle(.wheel)
+        .onChange(of: weekStartDay) { _, _ in
+            hkManager.readStepCountThisWeek()
+        }
+    }
+}
+
 struct SettingsView: View {
     @Environment(\.openURL) var openURL
     
     @StateObject var hkManager = HealthKitManager.shared
 
     @State private var showInstruction = false
+    @State private var showStartDay = true
     
     var body: some View {
         ZStack {
@@ -25,6 +49,15 @@ struct SettingsView: View {
                     }
                 } label: {
                     Label("How to use", systemImage: "")
+                        .labelStyle(SettingsButton())
+                }
+                
+                Button {
+                    withAnimation(.spring) {
+                        showStartDay.toggle()
+                    }
+                } label: {
+                    Label("Week start day", systemImage: "")
                         .labelStyle(SettingsButton())
                 }
                 
@@ -66,7 +99,7 @@ struct SettingsView: View {
                 VStack {
                     VStack(spacing: 24) {
                         
-                        Text("Using the odo widget").font(.title)
+                        Text("Using the odo widget").font(.title2)
                         
                         VStack(spacing: 24) {
                             Text("To add our widget to your device, long-press on your home screen and tap the '+' button at the top.")
@@ -96,6 +129,47 @@ struct SettingsView: View {
                     
                 }
                 .frame(maxWidth: .infinity, maxHeight: 420)
+                .background(.thinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 24))
+                .padding()
+            }
+            
+            if showStartDay {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation(.spring) {
+                            showStartDay = false
+                        }
+                    }
+                
+                VStack {
+                    VStack {
+                        Spacer()
+                        VStack(spacing: 0) {
+                            Text("Starting day of week").font(.title2)
+                            Text("Choose the preferred day you'd like us to calculate your weekly step count from.").font(.subheadline).padding()
+                        }.multilineTextAlignment(.center)
+                        
+                        WeekStartPicker()
+                        
+                        Spacer()
+                        
+                        Button {
+                            withAnimation(.spring) { showStartDay = false }
+                        } label: {
+                            Label("Save and close", systemImage: "")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(.white)
+                                .foregroundStyle(.black)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }.padding(.horizontal)
+                        
+                        Spacer()
+                    }.bold()
+                }
+                .frame(maxWidth: .infinity, maxHeight: 480)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 24))
                 .padding()
