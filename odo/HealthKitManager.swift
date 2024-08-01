@@ -105,7 +105,7 @@ class HealthKitManager: ObservableObject {
             
             DispatchQueue.main.async {
                 self.stepCountToday = steps
-                UserDefaults(suiteName: "group.odo")?.set(self.stepCountToday, forKey: "widgetStep")
+                UserDefaults(suiteName: "group.odo")?.set(self.stepCountToday, forKey: "dailyStepCount")
                 WidgetCenter.shared.reloadAllTimelines()
             }
             
@@ -128,7 +128,7 @@ class HealthKitManager: ObservableObject {
         print("\(stepCountToday) steps today")
         print("////////////////////////////////////////")
         
-        UserDefaults(suiteName: "group.odo")?.set(stepCountToday, forKey: "widgetStep")
+        UserDefaults(suiteName: "group.odo")?.set(stepCountToday, forKey: "dailyStepCount")
         
         WidgetCenter.shared.reloadAllTimelines()
     }
@@ -233,6 +233,12 @@ class HealthKitManager: ObservableObject {
             }
             
             print(self.thisWeekSteps)
+            
+            DispatchQueue.main.async {
+                UserDefaults(suiteName: "group.odo")?.set(self.thisWeekSteps.compactMap{ $0.value }.reduce(0, +), forKey: "weeklyStepCount")
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+            
         }
         
         healthStore.execute(query)
