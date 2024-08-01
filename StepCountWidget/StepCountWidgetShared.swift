@@ -10,4 +10,5 @@ import WidgetKit
 struct StepCountEntry: TimelineEntry {
     let date: Date
     let stepCount: Int
+    let isWeekly: Bool
 }

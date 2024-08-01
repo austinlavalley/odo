@@ -36,7 +36,7 @@ struct SettingsView: View {
     @StateObject var hkManager = HealthKitManager.shared
 
     @State private var showInstruction = false
-    @State private var showStartDay = true
+    @State private var showStartDay = false
     
     var body: some View {
         ZStack {

@@ -17,7 +17,7 @@ struct StepCountWidgetEntryView : View {
 
     var body: some View {
         VStack(spacing: 8) {
-            Text("Steps Today").foregroundStyle(colorScheme != .dark ? .black.opacity(0.5) : .white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
+            Text(entry.isWeekly ? "Steps this week" : "Steps today").foregroundStyle(colorScheme != .dark ? .black.opacity(0.5) : .white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
             OdometerView(steps: entry.stepCount, darkMode: colorScheme == .dark)
 //            Text("\(entry.date.description)").foregroundStyle(.white.opacity(0.5)).textCase(.uppercase).font(.caption).fontDesign(.monospaced).bold()
         }
@@ -34,7 +34,7 @@ struct StepCountWidgetEntryView : View {
 
 struct StepCountWidget_Previews: PreviewProvider {
     static var previews: some View {
-        StepCountWidgetEntryView(entry: StepCountEntry(date: Date(), stepCount: 3852))
+        StepCountWidgetEntryView(entry: StepCountEntry(date: Date(), stepCount: 3852, isWeekly: true))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct StepCountWidgetBundle: WidgetBundle {
     var body: some Widget {
-        StepCountWidget()
+        DailyStepCountWidget()
+        WeeklyStepCountWidget()
     }
 }
