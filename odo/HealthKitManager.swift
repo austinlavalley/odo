@@ -191,7 +191,7 @@ class HealthKitManager: ObservableObject {
         }
         
         // Calculate the end of the week (7 days after start, to include the full current day)
-        guard let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek) else {
+        guard let _ = calendar.date(byAdding: .day, value: 7, to: startOfWeek) else {
             print("Failed to calculate the end date of the week.")
             return
         }
