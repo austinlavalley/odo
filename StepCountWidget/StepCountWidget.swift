@@ -32,14 +32,18 @@ struct DailyStepCountProvider: TimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<StepCountEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let healthKitManager = HealthKitManager.shared
+        healthKitManager.fetchAllData()
+        
         let currentDate = Date()
-        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
+//        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
         
         let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: "dailyStepCount") ?? 999999
         let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: false)
         
-        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+//        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
 }
@@ -70,14 +74,18 @@ struct WeeklyStepCountProvider: TimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<StepCountEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let healthKitManager = HealthKitManager.shared
+        healthKitManager.fetchAllData()
+        
         let currentDate = Date()
-        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
+//        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
         
         let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: "weeklyStepCount") ?? 999999
         let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: true)
         
-        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+//        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
 }

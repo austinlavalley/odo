@@ -8,17 +8,17 @@
 import SwiftUI
 
 @main
-struct odoApp: App {
-//    @StateObject var notificationManager = NotificationManager()
-        
+struct OdoApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var healthKitManager = HealthKitManager.shared
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.dark)
+                .environmentObject(healthKitManager)
         }
     }
 }
-
 
 
 

@@ -14,6 +14,7 @@
 		D950387E2C4AE97400DDE08E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950387D2C4AE97400DDE08E /* NotificationManager.swift */; };
 		D950387F2C4AE97400DDE08E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950387D2C4AE97400DDE08E /* NotificationManager.swift */; };
 		D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960DC702C4053DA00722727 /* HealthKitManager.swift */; };
+		D9ADFFE72C9C8DD900CA2D0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ADFFE62C9C8DD900CA2D0F /* AppDelegate.swift */; };
 		D9D9D97D2C4443B3007F33E3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D9D97C2C4443B3007F33E3 /* WidgetKit.framework */; };
 		D9D9D97F2C4443B3007F33E3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9D9D97E2C4443B3007F33E3 /* SwiftUI.framework */; };
 		D9D9D9822C4443B3007F33E3 /* StepCountWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D9D9812C4443B3007F33E3 /* StepCountWidgetBundle.swift */; };
@@ -61,6 +62,7 @@
 		D960DC6E2C40534C00722727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D960DC6F2C40535500722727 /* odo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = odo.entitlements; sourceTree = "<group>"; };
 		D960DC702C4053DA00722727 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		D9ADFFE62C9C8DD900CA2D0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9D9D97A2C4443B3007F33E3 /* StepCountWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StepCountWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D9D97C2C4443B3007F33E3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D9D9D97E2C4443B3007F33E3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D960DC702C4053DA00722727 /* HealthKitManager.swift */,
+				D9ADFFE62C9C8DD900CA2D0F /* AppDelegate.swift */,
 				D960DC6F2C40535500722727 /* odo.entitlements */,
 				D960DC6E2C40534C00722727 /* Info.plist */,
 				D9EEADB92C3DEC36004702A0 /* odoApp.swift */,
@@ -285,6 +288,7 @@
 				D950387B2C4ADD2700DDE08E /* SettingsView.swift in Sources */,
 				D9D9D9962C444760007F33E3 /* StepCountWidgetShared.swift in Sources */,
 				D9EEADC82C3DEDAB004702A0 /* OdometerView.swift in Sources */,
+				D9ADFFE72C9C8DD900CA2D0F /* AppDelegate.swift in Sources */,
 				D9EEADBC2C3DEC36004702A0 /* ContentView.swift in Sources */,
 				D960DC712C4053DA00722727 /* HealthKitManager.swift in Sources */,
 				D9D9D9932C4446FE007F33E3 /* StepCountWidgetView.swift in Sources */,
@@ -508,7 +512,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.austinlavalley.odo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -547,7 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.austinlavalley.odo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
