@@ -9,83 +9,67 @@
 import WidgetKit
 import SwiftUI
 
-struct DailyStepCountWidget: Widget {
-    let kind: String = "DailyStepCountWidget"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: DailyStepCountProvider()) { entry in
-            StepCountWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("Daily Step Count")
-        .description("Displays your daily step count.")
-        .supportedFamilies([.systemMedium])
-    }
-}
-
-struct DailyStepCountProvider: TimelineProvider {
+struct StepCountProvider: TimelineProvider {
     func placeholder(in context: Context) -> StepCountEntry {
         StepCountEntry(date: Date(), stepCount: 0, isWeekly: false)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (StepCountEntry) -> ()) {
-        let entry = StepCountEntry(date: Date(), stepCount: UserDefaults(suiteName: "group.odo")?.integer(forKey: "dailyStepCount") ?? 888888, isWeekly: false)
+        let isWeekly = (context.family == .systemLarge)
+        let key = isWeekly ? "weeklyStepCount" : "dailyStepCount"
+        let entry = StepCountEntry(date: Date(), stepCount: UserDefaults(suiteName: "group.odo")?.integer(forKey: key) ?? 0, isWeekly: isWeekly)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let isWeekly = (context.family == .systemLarge)
         let healthKitManager = HealthKitManager.shared
-        healthKitManager.fetchAllData()
+        
+        healthKitManager.fetchStepCounts()
         
         let currentDate = Date()
-//        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
+        let key = isWeekly ? "weeklyStepCount" : "dailyStepCount"
         
-        let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: "dailyStepCount") ?? 999999
-        let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: false)
+        // Use a DispatchGroup to ensure we have the latest data before creating the timeline
+        let group = DispatchGroup()
+        group.enter()
         
-//        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
-        completion(timeline)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Give some time for fetchStepCounts to complete
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: key) ?? 0
+            let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: isWeekly)
+            
+            let timeline = Timeline(entries: [entry], policy: .after(currentDate.addingTimeInterval(15 * 60))) // Update every 15 minutes
+            completion(timeline)
+        }
     }
 }
 
+struct DailyStepCountWidget: Widget {
+    let kind: String = "DailyStepCountWidget"
 
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: StepCountProvider()) { entry in
+            StepCountWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("Daily Step Count")
+        .description("Displays your daily step count.")
+        .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
 
 struct WeeklyStepCountWidget: Widget {
     let kind: String = "WeeklyStepCountWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: WeeklyStepCountProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: StepCountProvider()) { entry in
             StepCountWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Weekly Step Count")
         .description("Displays your steps for the current week.")
-        .supportedFamilies([.systemMedium])
-    }
-}
-
-
-struct WeeklyStepCountProvider: TimelineProvider {
-    func placeholder(in context: Context) -> StepCountEntry {
-        StepCountEntry(date: Date(), stepCount: 0, isWeekly: true)
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (StepCountEntry) -> ()) {
-        let entry = StepCountEntry(date: Date(), stepCount: UserDefaults(suiteName: "group.odo")?.integer(forKey: "weeklyStepCount") ?? 888888, isWeekly: true)
-        completion(entry)
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let healthKitManager = HealthKitManager.shared
-        healthKitManager.fetchAllData()
-        
-        let currentDate = Date()
-//        let refreshDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
-        
-        let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: "weeklyStepCount") ?? 999999
-        let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: true)
-        
-//        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
-        completion(timeline)
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

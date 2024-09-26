@@ -19,7 +19,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        HealthKitManager.shared.fetchAllData()
+//        HealthKitManager.shared.fetchAllData()
+        HealthKitManager.shared.fetchStepCounts()
         completionHandler(.newData)
     }
 
