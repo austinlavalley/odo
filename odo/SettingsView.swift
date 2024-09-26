@@ -25,7 +25,8 @@ struct WeekStartPicker: View {
         .bold()
         .pickerStyle(.wheel)
         .onChange(of: weekStartDay) { _, _ in
-            hkManager.readStepCountThisWeek()
+//            hkManager.readStepCountThisWeek()
+            hkManager.fetchStepCounts()
         }
     }
 }
