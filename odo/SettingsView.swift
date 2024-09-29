@@ -38,9 +38,12 @@ struct SettingsView: View {
     @Environment(\.openURL) var openURL
     
     @StateObject var hkManager = HealthKitManager.shared
+    @AppStorage("weekStartDay", store: UserDefaults(suiteName: "group.odo")) private var weekStartDay: Int = 2
 
     @State private var showInstruction = false
     @State private var showStartDay = false
+    
+    @State private var showSavedToast = false
     
     var body: some View {
         ZStack {
@@ -160,7 +163,16 @@ struct SettingsView: View {
                         Spacer()
                         
                         Button {
-                            withAnimation(.spring) { showStartDay = false }
+                            withAnimation(.spring) { 
+                                showStartDay = false
+                                
+                                showSavedToast = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                    withAnimation {
+                                        showSavedToast = false
+                                    }
+                                }
+                            }
                         } label: {
                             Label("Save and close", systemImage: "")
                                 .frame(maxWidth: .infinity)
@@ -179,8 +191,37 @@ struct SettingsView: View {
                 .padding()
             }
             
+            if showSavedToast {
+                VStack {
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12).fill(Color.secondary.opacity(0.65))
+                            .frame(width: 240, height: 64)
+                            .padding()
+                        
+                        Text("Week start set as \(weekdayAsString())").foregroundColor(.white).bold()
+                    }
+                    Spacer()
+                }
+            }
+            
             
         }
+    }
+    
+    private func weekdayAsString() -> String {
+        if weekStartDay == 1 { return "Sunday" }
+        else if weekStartDay == 2 { return "Monday" }
+        else if weekStartDay == 3 { return "Tuesday" }
+        else if weekStartDay == 4 { return "Wednesday" }
+        else if weekStartDay == 5 { return "Thursday" }
+        else if weekStartDay == 6 { return "Friday" }
+        else { return "Saturday" }
     }
 }
 
@@ -209,3 +250,6 @@ struct SettingsButton: LabelStyle {
         }
     }
 }
+
+
+
