@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct WeekStartPicker: View {
     @StateObject var hkManager = HealthKitManager.shared
 
-    @AppStorage("weekStartDay") private var weekStartDay: Int = 2 // Default to Monday (2)
+    @AppStorage("weekStartDay", store: UserDefaults(suiteName: "group.odo")) private var weekStartDay: Int = 2
 
     var body: some View {
         Picker("Week Starts On", selection: $weekStartDay) {
@@ -24,9 +25,11 @@ struct WeekStartPicker: View {
         }
         .bold()
         .pickerStyle(.wheel)
+        
+        
         .onChange(of: weekStartDay) { _, _ in
-//            hkManager.readStepCountThisWeek()
             hkManager.fetchStepCounts()
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 }
