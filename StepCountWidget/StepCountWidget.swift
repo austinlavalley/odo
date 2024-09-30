@@ -27,21 +27,22 @@ struct StepCountProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let healthKitManager = HealthKitManager.shared
         
-        healthKitManager.fetchStepCounts()
-        
         let currentDate = Date()
         let key = isWeekly ? "weeklyStepCount" : "dailyStepCount"
+        
+        let weekStartDay = UserDefaults(suiteName: "group.odo")?.integer(forKey: "weekStartDay") ?? 2
         
         let group = DispatchGroup()
         group.enter()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            healthKitManager.fetchStepCounts(weekStartDay: weekStartDay)
             group.leave()
         }
         
         group.notify(queue: .main) {
             let stepCount = UserDefaults(suiteName: "group.odo")?.integer(forKey: key) ?? 0
-            let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: isWeekly)
+            let entry = StepCountEntry(date: currentDate, stepCount: stepCount, isWeekly: self.isWeekly)
             
             let timeline = Timeline(entries: [entry], policy: .after(currentDate.addingTimeInterval(15 * 60)))
             completion(timeline)

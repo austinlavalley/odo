@@ -21,7 +21,9 @@ class HealthKitManager: ObservableObject {
     @Published var stepCountThisWeek: Int = 0
     @Published var thisWeekSteps: [Int: Int] = [1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0]
     
-    @AppStorage("weekStartDay") private var weekStartDay: Int = 2 // Default to Monday (2)
+    @AppStorage("weekStartDay", store: UserDefaults(suiteName: "group.odo")) private var weekStartDay: Int = 2  // Default to Monday (2)
+    
+    
     
     private var observerQuery: HKObserverQuery?
     
@@ -66,16 +68,17 @@ class HealthKitManager: ObservableObject {
         }
     }
     
-    func fetchStepCounts() {
+    func fetchStepCounts(weekStartDay: Int? = nil) {
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
         
         var calendar = Calendar(identifier: .gregorian)
-        calendar.firstWeekday = weekStartDay
+        let startDay = weekStartDay ?? self.weekStartDay
+        calendar.firstWeekday = startDay
         
         let now = Date()
         let today = calendar.startOfDay(for: now)
         
-        let weekdayOffset = (calendar.component(.weekday, from: today) - weekStartDay + 7) % 7
+        let weekdayOffset = (calendar.component(.weekday, from: today) - startDay + 7) % 7
         guard let startOfWeek = calendar.date(byAdding: .day, value: -weekdayOffset, to: today) else {
             print("Failed to calculate the start date of the week.")
             return
